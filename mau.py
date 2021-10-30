@@ -20,11 +20,17 @@ def newRule(Player_Name):
     input_invalid = True
     RuleType = ""
     Condition = ""
+    
     Sure = False
     Card = ""
+    Suit = ""
     Say = ""
+    Penalty = ""
+
     temp = ""
     Cards = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
+    Suits = ["Club", "Diamond", "Heart", "Spade"]
+    
     while (input_invalid == True):
         while (not(RuleType == "Say" or RuleType == "Power")):
             print("Would you like a Say rule or a Power rule?(Say/Power)")
@@ -35,11 +41,23 @@ def newRule(Player_Name):
                 Condition = input()
             while (Sure == False):
                 print("Which card would you like this to apply to?")
+                print(Cards)
                 Card = input()
-                if(Card in Cards):
+                if (Card in Cards):
                     print("Are you sure?(Y/n)")
-                if (temp.lower() == "y"):
-                    Sure = True
+                    temp = input()
+                    if (temp.lower() == "y"):
+                        Sure = True
+            Sure = False
+            while (Sure == False):
+                print("What suit would you like to apply this two?")
+                print(Suits)
+                Suit = input()
+                if (Suit in Suits):
+                    print("Are you sure?(Y/n)")
+                    temp = input()
+                    if (temp.lower() == "y"):
+                        Sure = True
             Sure = False
             while (Sure == False):
                 print("What would you like the player to say?")
@@ -48,10 +66,17 @@ def newRule(Player_Name):
                 temp = input()
                 if (temp.lower() == "y"):
                     Sure = True
-            return 
-
-
-            return
+            Sure = False
+            while (Sure == False):
+                print("What would you like to be said if they break this rule?")
+                Penalty = input()
+                print("Are you sure?(Y/n)")
+                temp = input()
+                if (temp.lower() == "y"):
+                    Sure = True
+            
+            return ["Say{}".format(Condition[0]),Card,Suit,Say,Penalty]
+            
         else:
             
             while(not(Condition == "Take" or Condition == "Skip")):
