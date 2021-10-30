@@ -17,14 +17,16 @@ Power = [["Four", "Heart", "Player 2", "Take 4 Player 2"], ["Seven", "Spade", "N
 # Say?: #if nothing to say press enter to go to next player
 #
 
-#Takes in the card, suit, and the player impacted, and returns what their consequence is. If there isnt one, returns null
+#Takes in the card, suit, and the player impacted, and returns what their consequence is. If there isnt one, returns 0
 def judgement(ruleList, cardNum, cardSuit, player):
     for x in ruleList:
-        if cardNum == x[0]:
-            if cardSuit == x[1]:
-                print("%s has received judgement" % x[2])
-                return x[3]
-    return
+        ruleList = x.split(",")
+        for i in ruleList:
+            if cardNum == ruleList[0]:
+                if cardSuit == ruleList[1]:
+                    print("%s has received judgement" % x[2])
+                    return ruleList[3]
+    return 0
 
 
 def importRules():
