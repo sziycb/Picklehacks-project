@@ -1,13 +1,4 @@
 # Picklehacks-project
-This is a readme. You should read me.
-HEED ME.
-
-HEED MY READS
-
-READ MY HEEDS
-
-OR I'LL MAKE YOU BLEED ME
-
-WHAT WILL YOUR GOOD DEEDS BE?
-
-TO LEAD ME?
+This project is an attempt at Mau, a game very similar to Uno.
+We used PyGames.
+We didn't get very far.
