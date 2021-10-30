@@ -5,8 +5,8 @@ Player = ["Player 1", "Player 2", "Player 3"]
 # rules fall into a few categories
 # Say rules, you must say a phrase before or after playing a card
 # Power Rules, power rules can be draw 4, skip, 
-SayB = [["Ace", "Ace of Spades", "Failed to recognize Ace of Spades"], ["Dummy", "This will never occur", "How did this happen?"]]
-SayA = [["Four", "Four score and seven years ago", "AMERICA!"], ["Seven", "Four score and seven years ago", "AMERICA!"]]
+SayB = [["Ace", "Spade", "Ace of Spades", "Failed to recognize Ace of Spades"], ["Dummy", "Any", "This will never occur", "How did this happen?"]]
+SayA = [["Four", "Any", "Four score and seven years ago", "AMERICA!"], ["Seven", "Any", "Four score and seven years ago", "AMERICA!"]]
 
 Power = [["Four", "Player 2", "Take 4 Player 2"], ["Seven", "Next 1", "Take 4 {}"], ["Six", "Skip 1", "Skip to {}"]]
 #shows hand a list []
@@ -20,18 +20,35 @@ def newRule(Player_Name):
     input_invalid = True
     RuleType = ""
     Condition = ""
-    while input_invalid == True:
-        while(not(RuleType == "Say" or RuleType == "Power")):
+    Sure = False
+    Card = ""
+    Say = ""
+    temp = ""
+    Cards = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
+    while (input_invalid == True):
+        while (not(RuleType == "Say" or RuleType == "Power")):
             print("Would you like a Say rule or a Power rule?(Say/Power)")
             RuleType = input()
-        if RuleType == "Say":
-            while(not(Condition == "Before" or Condition == "After")):
+        if (RuleType == "Say"):
+            while (not(Condition == "Before" or Condition == "After")):
                 print("You said Say type rule. Would you like the player to say before or after the card is played?(Before/After)")
                 Condition = input()
-            
-            if(Condition == "Before"):
-                
-            else:
+            while (Sure == False):
+                print("Which card would you like this to apply to?")
+                Card = input()
+                if(Card in Cards):
+                    print("Are you sure?(Y/n)")
+                if (temp.lower() == "y"):
+                    Sure = True
+            Sure = False
+            while (Sure == False):
+                print("What would you like the player to say?")
+                Say = input()
+                print("Are you sure?(Y/n)")
+                temp = input()
+                if (temp.lower() == "y"):
+                    Sure = True
+            return 
 
 
             return
