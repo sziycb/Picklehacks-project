@@ -5,12 +5,10 @@ Player = ["Player 1", "Player 2", "Player 3"]
 # rules fall into a few categories
 # Say rules, you must say a phrase before or after playing a card
 # Power Rules, power rules can be draw 4, skip, 
-SayB = [["Ace", "Spade", "Ace of Spades", "Failed to recognize Ace of Spades"],
-        ["Dummy", "Any", "This will never occur", "How did this happen?"]]
-SayA = [["Four", "Any", "Four score and seven years ago", "AMERICA!"],
-        ["Seven", "Any", "Four score and seven years ago", "AMERICA!"]]
+SayB = [["Ace", "Spade", "Ace of Spades", "Failed to recognize Ace of Spades"], ["Dummy", "Any", "This will never occur", "How did this happen?"]]
+SayA = [["Four", "Any", "Four score and seven years ago", "AMERICA!"], ["Seven", "Any", "Four score and seven years ago", "AMERICA!"]]
 
-Power = [["Four", "Player 2", "Take 4 Player 2"], ["Seven", "Next 1", "Take 4 {}"], ["Six", "Skip 1", "Skip to {}"]]
+Power = [["Four", "Heart", "Player 2", "Take 4 Player 2"], ["Seven", "Spade", "Next 1", "Take 4 {}"], ["Six", "Diamond", "Skip 1", "Skip to {}"]]
 
 
 # shows hand a list []
