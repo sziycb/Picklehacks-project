@@ -21,11 +21,10 @@ Power = [["Four", "Heart", "Player 2", "Take 4 Player 2"], ["Seven", "Spade", "N
 def judgement(ruleList, cardNum, cardSuit, player):
     for x in ruleList:
         ruleList = x.split(",")
-        for i in ruleList:
-            if cardNum == ruleList[0]:
-                if cardSuit == ruleList[1]:
-                    print("%s has received judgement" % x[2])
-                    return ruleList[3]
+        if cardNum == ruleList[0]:
+            if cardSuit == ruleList[1]:
+                print("%s has received judgement" % x[2])
+                return ruleList[3]
     return 0
 
 
