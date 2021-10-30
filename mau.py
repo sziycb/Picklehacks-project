@@ -24,6 +24,7 @@ def importRules():
     f = open('rules.txt', 'r')
     ruleList = f.read()
     print(ruleList)
+    f.close()
     return
 
 
@@ -97,3 +98,11 @@ def newRule(Player_Name):
                     "You said Power type rule. Would you like the rule to be able to have a player Take cards or S a players turn?(Take/Skip)")
                 Condition = input()
                 return
+
+
+
+def main():
+    importRules()
+
+if __name__ == "__main__":
+    main()
