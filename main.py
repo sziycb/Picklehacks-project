@@ -1,5 +1,6 @@
 import pygame
 import random as r
+import sys
 
 class Card:
     def __init__(self, v, s):
@@ -71,7 +72,7 @@ player2 = Player("Sami")
 player3 = Player("Gabe")
 
 for i in (player1, player2, player3):
-    for k in range(14):
+    for k in range(7):
         i.addCard(standardDeck.pop())
 
 #print("PLAYER1")
@@ -92,15 +93,22 @@ icon = pygame.image.load('ace.jpg')
 pygame.display.set_icon(icon)
 
 #table
-tableImg = pygame.image.load('table.png')
+tableImg1 = pygame.image.load('table1.png')
+tableImg2 = pygame.image.load('table2.png')
+tableImg3 = pygame.image.load('table3.png')
 tableX = 0
 tableY = 0
 
 #card
 cardBack = pygame.image.load("card_back.png")
 
-def table():
-    screen.blit(tableImg, (tableX, tableY))
+def table(player):
+    if player == player1:
+        screen.blit(tableImg1, (tableX, tableY))
+    elif player == player2:
+        screen.blit(tableImg2, (tableX, tableY))
+    elif player == player3:
+        screen.blit(tableImg3, (tableX, tableY))
 
 
 def sevenCards():
@@ -114,30 +122,79 @@ def sevenCards():
 
 
 def flipCards():
-    x = 100
+    x = 500
     y = 540
     for i in player1.hand:
         screen.blit(i.frontImg, (x, y))
         x += 80
 
+players = [player1, player2, player3]
+playerCounter = 0
+def nextPlayer():
+    global playerCounter
+    playerCounter += 1
+    playerCounter %= 3
+    return playerCounter
+
+def isLegalPlay(topCard, playCard):
+    pass
+
+def playCard(player, card):
+    global topCard
+    topCard = card
+    player.playCard(card)
+    if len(player.hand) == 0:
+        print("WINNER", player.name)
+        sys.exit()
+
+def displayCards(player):
+    x = 500
+    y = 540
+    table(player)
+    showTopCard()
+    for i in player.hand:
+        screen.blit(i.frontImg, (x, y))
+        x += 80
+    pygame.display.update()
+
+def showTopCard():
+    global topCard
+    screen.blit(topCard.frontImg, (550, 10))
 
 #Game Loop
 running = True
-screen.fill((36, 115, 69))
-table()
+screen.fill((36, 115, 69)) #RGB values
+table(player1)
 sevenCards()
 pygame.display.update()
+topCard = standardDeck.pop()
 print("You may flip your cards.")
+
+
+currentPlayer = player1
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
     left, middle, right = pygame.mouse.get_pressed()
-
     if left:
-        table()
+        table(currentPlayer)
         flipCards()
+        screen.blit(topCard.frontImg, (550, 10))
         pygame.display.update()
-    #RGB values
+    left = False
+    left, middle, right = pygame.mouse.get_pressed()
+    if left:
+        playCard(currentPlayer, currentPlayer.hand[0])
+        screen.blit(topCard.frontImg, (550, 10))
+        pygame.display.update()
+        currentPlayer = players[nextPlayer()]
+        displayCards(currentPlayer)
 
 
+
+
+
+
+
+     
