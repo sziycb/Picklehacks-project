@@ -17,13 +17,22 @@ Power = [["Four", "Heart", "Player 2", "Take 4 Player 2"], ["Seven", "Spade", "N
 # Say?: #if nothing to say press enter to go to next player
 #
 
+#Takes in the card, suit, and the player impacted, and returns what their consequence is. If there isnt one, returns null
+def judgement(ruleList, cardNum, cardSuit, player):
+    for x in ruleList:
+        if cardNum == x[0]:
+            if cardSuit == x[1]:
+                print("%s has received judgement" % x[2])
+                return x[3]
+    return
+
 
 def importRules():
-    f = open('rules.txt', 'r')
-    ruleList = f.read()
+    with open('rules.txt') as f:
+        ruleList = f.read().splitlines()
     print(ruleList)
     f.close()
-    return
+    return ruleList
 
 
 def newRule(Player_Name):
@@ -165,7 +174,7 @@ def newRule(Player_Name):
 
 
 def main():
-    importRules()
-
+    ruleList = importRules()
+    print(ruleList[0])
 if __name__ == "__main__":
     main()
